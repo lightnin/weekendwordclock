@@ -1,9 +1,10 @@
 /* Weekend Word Clock - A. Blanton
-a remix of https://github.com/espruino/BangleApps/tree/master/apps/wclock
-Changes the representation of time on weekends
+A remix of word clock
+https://github.com/espruino/BangleApps/tree/master/apps/wclock
+by Gordon Williams https://github.com/gfwilliams
+Changes the representation of time on weekends to be more casual and less accurate
+(Shows accurate time when button 1 is pressed.)
 Changes the color used to display time words based on night / day time.
-To Do: Make time display on weekend happen with button press.
-
 */
 /* jshint esversion: 6 */
 const allWordsWorkDay = [
