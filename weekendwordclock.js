@@ -106,9 +106,12 @@ function drawWordClock() {
 
     var allWords = allWordsWorkDay;
     var hours = hoursWorkDay;
+    var showDigitalTime = true;
 
     if(isWeekend) {
       allWords = allWordsWeekend;
+      hours = hoursWeekend;
+      showDigitalTime = false;
     }
 
 
@@ -132,10 +135,9 @@ function drawWordClock() {
     // calc indexes
     if (isWeekend)
     {
-      hours = hoursWeekend;
 
-      // Switch case isn't good for this in Js apparently
-      
+      // Switch case isn't good for this in Js apparently so...
+
       if(h < 3){
       // Middle of the Night
         hidx = 11;
@@ -161,7 +163,7 @@ function drawWordClock() {
         hidx = 5;
       }
       else if (h < 16){
-      // Afternoon 
+      // Afternoon
         hidx = 6;
       }
       else if (h < 17){
@@ -173,17 +175,17 @@ function drawWordClock() {
         hidx = 8;
       }
       else if (h < 21){
-      // evening 
+      // evening
         hidx = 9;
       }
       else if (h < 24){
       // Night
         hidx = 10;
       }
-          
-               
+
+
     }
-    else{  
+    else{
       midx = Math.round(m / 5);
       hidx = h % 12;
       if (hidx === 0) { hidx = 12; }
@@ -216,9 +218,9 @@ function drawWordClock() {
               g.drawString(c, x, y);
           });
       });
-  
+
     // display digital time
-    if (!isWeekend){
+    if (showDigitalTime || BTN1.read()){
         g.setColor(activeColor);
         g.clearRect(0, 215, 240, 240);
         g.drawString(time, 120, 215);
@@ -237,3 +239,12 @@ drawWordClock();
 
 // Show launcher when middle button pressed
 setWatch(Bangle.showLauncher, BTN2, {repeat:false,edge:"falling"});
+
+
+// Show accurate time on weekends when button one is pressed.
+setWatch(() => {
+  g.clear();
+  Bangle.loadWidgets();
+  Bangle.drawWidgets();
+  drawWordClock();
+}, BTN1, {repeat:true, edge:"both"});
