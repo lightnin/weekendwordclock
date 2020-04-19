@@ -35,7 +35,7 @@ const hoursWeekend = {
     1: ["EARLYMORNING", 10, 11, 12, 13, 14, 02, 12, 22, 32, 42, 52, 62],
     2: ["MORNING", 02, 12, 22, 32, 42, 52, 62],
     3: ["LATEMORNING", 01, 11, 21, 31, 02, 12, 22, 32, 42, 52, 62],
-    4: ["MIDDAY", 13, 23, 43, 54, 64, 74],
+    4: ["MIDDAY", 13, 23, 33, 54, 64, 74],
     5: ["EARLYAFTERNOON", 10, 20, 30, 40, 50, 04, 14, 24, 34, 44, 07, 17, 27, 37],
     6: ["AFTERNOON", 04, 14, 24, 34, 44, 07, 17, 27, 37],
     7: ["LATEAFTERNOON", 01, 11, 21, 31, 04, 14, 24, 34, 44, 07, 17, 27, 37],
@@ -249,3 +249,4 @@ setWatch(() => {
   Bangle.drawWidgets();
   drawWordClock();
 }, BTN1, {repeat:true, edge:"both"});
+
