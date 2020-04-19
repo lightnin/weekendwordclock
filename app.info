@@ -1,0 +1,5 @@
+require("Storage").write("clock-wordwknd.info",{
+  "name":"Weekend Word Clock",
+  "src":"clock-wordwknd.js",
+  "icon":"clock-wordwknd.png"
+});
