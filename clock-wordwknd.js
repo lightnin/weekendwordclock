@@ -221,7 +221,7 @@ function drawWordClock() {
       });
 
     // display digital time
-    if (showDigitalTime || BTN1.read()){
+    if (showDigitalTime || BTN3.read()){
         g.setColor(activeColor);
         g.clearRect(0, 215, 240, 240);
         g.drawString(time, 120, 215);
@@ -248,5 +248,5 @@ setWatch(() => {
   Bangle.loadWidgets();
   Bangle.drawWidgets();
   drawWordClock();
-}, BTN1, {repeat:true, edge:"both"});
+}, BTN3, {repeat:true, edge:"both"});
 
