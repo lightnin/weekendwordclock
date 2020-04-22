@@ -99,7 +99,7 @@ function drawWordClock() {
     var isWeekend = (day === 6) || (day === 0);
 
     var hidx;
-    var midx;
+    var midx = 0;
     var midxA = [];
 
     var activeColor = activeColorDay;
@@ -107,7 +107,6 @@ function drawWordClock() {
 
     var allWords = allWordsWorkDay;
     var hours = hoursWorkDay;
-    var showDigitalTime = true;
 
     if(isWeekend) {
       allWords = allWordsWeekend;
@@ -132,6 +131,7 @@ function drawWordClock() {
         }
         y += dy;
     });
+
 
     // calc indexes
     if (isWeekend)
@@ -202,6 +202,7 @@ function drawWordClock() {
           }
       }
     }
+  
       // write hour in active color
       g.setColor(activeColor);
       hours[hidx][0].split('').forEach((c, pos) => {
@@ -211,6 +212,7 @@ function drawWordClock() {
           g.drawString(c, x, y);
       });
 
+  
       // write min words in active color
       midxA.forEach(idx => {
           mins[idx][0].split('').forEach((c, pos) => {
@@ -221,11 +223,11 @@ function drawWordClock() {
       });
 
     // display digital time
-    if (showDigitalTime || BTN3.read()){
+    if (BTN1.read()){
         g.setColor(activeColor);
         g.clearRect(0, 215, 240, 240);
         g.drawString(time, 120, 215);
-    }
+    } else { g.clearRect(0, 215, 240, 240); }
 }
 
 Bangle.on('lcdPower', function(on) {
@@ -242,11 +244,9 @@ drawWordClock();
 setWatch(Bangle.showLauncher, BTN2, {repeat:false,edge:"falling"});
 
 
-// Show accurate time on weekends when button one is pressed.
+// Show accurate time on weekends when button 3 is pressed.
 setWatch(() => {
   g.clear();
-  Bangle.loadWidgets();
-  Bangle.drawWidgets();
   drawWordClock();
-}, BTN3, {repeat:true, edge:"both"});
+}, BTN1, {repeat:true, debounce:50, edge:"both" });
 
